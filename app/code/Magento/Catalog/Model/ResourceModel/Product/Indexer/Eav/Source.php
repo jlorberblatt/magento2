@@ -368,7 +368,7 @@ class Source extends AbstractEav
         $idxTable = $this->getIdxTable();
 
         if (!$this->tableStrategy->getUseIdxTable()) {
-            $additionalIdxTable = $connection->getTableName(self::TRANSIT_PREFIX . $this->getIdxTable());
+            $additionalIdxTable = $connection->getTableName(self::TRANSIT_PREFIX . $this->getIdxTable()) . '_jlor_' . uniqid();
             $connection->createTemporaryTableLike($additionalIdxTable, $idxTable);
 
             $query = $connection->insertFromSelect(

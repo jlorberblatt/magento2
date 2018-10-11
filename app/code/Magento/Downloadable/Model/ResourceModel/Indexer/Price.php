@@ -136,7 +136,7 @@ class Price implements DimensionalIndexerInterface
         IndexTableStructure $temporaryPriceTable,
         array $dimensions
     ) {
-        $temporaryDownloadableTableName = 'catalog_product_index_price_downlod_temp';
+        $temporaryDownloadableTableName = 'catalog_product_index_price_downlod_temp' . '_jlor_' . uniqid();
         $this->getConnection()->createTemporaryTableLike(
             $temporaryDownloadableTableName,
             $this->getTable('catalog_product_index_price_downlod_tmp'),

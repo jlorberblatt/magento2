@@ -614,7 +614,7 @@ abstract class AbstractAction
     protected function makeTempCategoryTreeIndex()
     {
         // Note: this temporary table is per-connection, so won't conflict by prefix.
-        $temporaryName = $this->getTemporaryTreeIndexTableName();
+        $temporaryName = $this->getTemporaryTreeIndexTableName() . '_jlor_' . uniqid();
 
         $temporaryTable = $this->connection->newTable($temporaryName);
         $temporaryTable->addColumn(

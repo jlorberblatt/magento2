@@ -197,7 +197,7 @@ class TableMaintainer
     {
         if (!isset($this->mainTmpTable[$storeId])) {
             $originTableName = $this->getMainTable($storeId);
-            $temporaryTableName = $this->getMainTable($storeId) . $this->tmpTableSuffix;
+            $temporaryTableName = $this->getMainTable($storeId) . $this->tmpTableSuffix . '_jlor_' . uniqid();
             $this->getConnection()->createTemporaryTableLike($temporaryTableName, $originTableName, true);
             $this->mainTmpTable[$storeId] = $temporaryTableName;
         }

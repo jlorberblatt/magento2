@@ -46,7 +46,9 @@ class TemporaryTableStrategy implements \Magento\Framework\Indexer\Table\Strateg
      */
     public function getUseIdxTable()
     {
-        return $this->strategy->getUseIdxTable();
+        /* return $this->strategy->getUseIdxTable();
+   	*/
+	return true; 
     }
 
     /**
@@ -76,12 +78,13 @@ class TemporaryTableStrategy implements \Magento\Framework\Indexer\Table\Strateg
             return $tablePrefix . self::IDX_SUFFIX;
         }
 
+	$temporaryTableName = $this->resource->getTableName($tablePrefix . self::TEMP_SUFFIX . '_jlor_' . uniqid());
         // Create temporary table
         $this->resource->getConnection('indexer')->createTemporaryTableLike(
-            $this->resource->getTableName($tablePrefix . self::TEMP_SUFFIX),
+            $this->resource->getTableName($temporaryTableName),
             $this->resource->getTableName($tablePrefix . self::TMP_SUFFIX),
             true
         );
-        return $tablePrefix . self::TEMP_SUFFIX;
+        return $temporaryTableName;
     }
 }

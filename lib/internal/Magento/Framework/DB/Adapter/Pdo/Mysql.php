@@ -2162,7 +2162,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         );
         $tableOptions   = $this->_getOptionsDefinition($table);
         $sql = sprintf(
-            "CREATE TEMPORARY TABLE %s (\n%s\n) %s",
+            "CREATE TABLE %s (\n%s\n) %s",
             $this->quoteIdentifier($table->getName()),
             implode(",\n", $sqlFragment),
             implode(" ", $tableOptions)
@@ -2184,7 +2184,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
         $ifNotExistsSql = ($ifNotExists ? 'IF NOT EXISTS' : '');
         $temporaryTable = $this->quoteIdentifier($this->_getTableName($temporaryTableName));
         $originTable = $this->quoteIdentifier($this->_getTableName($originTableName));
-        $sql = sprintf('CREATE TEMPORARY TABLE %s %s LIKE %s', $ifNotExistsSql, $temporaryTable, $originTable);
+        $sql = sprintf('CREATE TABLE %s %s LIKE %s', $ifNotExistsSql, $temporaryTable, $originTable);
 
         return $this->query($sql);
     }
@@ -2583,7 +2583,7 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
     public function dropTemporaryTable($tableName, $schemaName = null)
     {
         $table = $this->quoteIdentifier($this->_getTableName($tableName, $schemaName));
-        $query = 'DROP TEMPORARY TABLE IF EXISTS ' . $table;
+        $query = 'DROP TABLE IF EXISTS ' . $table;
         $this->query($query);
 
         return true;

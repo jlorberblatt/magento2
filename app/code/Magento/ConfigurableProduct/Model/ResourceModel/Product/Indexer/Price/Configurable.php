@@ -143,7 +143,7 @@ class Configurable implements DimensionalIndexerInterface
         array $dimensions,
         array $entityIds
     ) {
-        $temporaryOptionsTableName = 'catalog_product_index_price_cfg_opt_temp';
+        $temporaryOptionsTableName = 'catalog_product_index_price_cfg_opt_temp' . '_jlor_' . uniqid();
         $this->getConnection()->createTemporaryTableLike(
             $temporaryOptionsTableName,
             $this->getTable('catalog_product_index_price_cfg_opt_tmp'),
