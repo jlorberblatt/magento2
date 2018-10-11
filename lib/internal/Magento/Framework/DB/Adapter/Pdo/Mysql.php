@@ -507,10 +507,12 @@ class Mysql extends \Zend_Db_Adapter_Pdo_Mysql implements AdapterInterface
             $sql = ltrim(preg_replace('/\s+/', ' ', $sql));
             $sqlMessage = explode(' ', $sql, 3);
             $startSql = strtolower(substr($sqlMessage[0], 0, 3));
-            if (in_array($startSql, $this->_ddlRoutines) && strcasecmp($sqlMessage[1], 'temporary') !== 0) {
+           /* 
+		if (in_array($startSql, $this->_ddlRoutines) && strcasecmp($sqlMessage[1], 'temporary') !== 0) {
                 throw new ConnectionException(AdapterInterface::ERROR_DDL_MESSAGE, E_USER_ERROR);
             }
-        }
+       		*/ 
+	}
     }
 
     /**
